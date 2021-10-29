@@ -1,5 +1,7 @@
 #include "Game.h"
 
+Game* Game::s_pInstance = 0;
+
 GameObject* m_go = new GameObject();
 GameObject* m_player = new Player();
 
