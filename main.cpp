@@ -1,4 +1,4 @@
-//[상속]
+//[다형성]
 #include "Game.h"
 
 Game* g_game = 0;
