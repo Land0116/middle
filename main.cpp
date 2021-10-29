@@ -1,4 +1,4 @@
-//[SDL기본 그리기]
+//[원본상자/대상상자]
 #include "Game.h"
 
 Game* g_game = 0;

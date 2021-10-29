@@ -3,6 +3,7 @@
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 { 
   SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/rider.bmp");
+  SDL_Surface* pTempSurface_Back = IMG_Load("Assets/BackGround.png");
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
     m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -27,6 +28,22 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
           m_destinationRectangle.x = m_sourceRectangle.x = 0;
           m_destinationRectangle.y = m_sourceRectangle.y = 0;
+
+          cout << "W : " << m_sourceRectangle.w  << " H : " << m_sourceRectangle.h << endl;
+          if(pTempSurface_Back != 0)
+          {
+            m_pTexture_Back = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface_Back);
+            SDL_FreeSurface(pTempSurface_Back);
+
+            SDL_QueryTexture(m_pTexture_Back, NULL, NULL, &m_sourceRectangle_Back.w, &m_sourceRectangle_Back.h);
+
+            m_destinationRectangle_Back.w = m_sourceRectangle_Back.w;
+            m_destinationRectangle_Back.h = m_sourceRectangle_Back.h;
+
+            m_destinationRectangle_Back.x = m_sourceRectangle_Back.y = 0;
+            m_destinationRectangle_Back.y = m_sourceRectangle_Back.y = 0;
+          }
+          else { return false; }
         }
         else { return false; }
       }
@@ -42,17 +59,28 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-  if(countColor <= 10)
+  if(dirt == 1)
   {
-    SDL_SetRenderDrawColor(m_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
-    SDL_Delay(1000);
+    if(m_destinationRectangle.x >= 520)
+    {
+      dirt = -1;
+    }
+    m_destinationRectangle.x++;
   }
-  countColor++;
+  else if(dirt == -1)
+  {
+    if(m_destinationRectangle.x == 0)
+    {
+      dirt = 1;
+    }
+    m_destinationRectangle.x--;
+  }
 }
 
 void Game::render()
 {
   SDL_RenderClear(m_pRenderer);
+  SDL_RenderCopy(m_pRenderer, m_pTexture_Back, &m_sourceRectangle_Back, &m_destinationRectangle_Back);
   SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
   SDL_RenderPresent(m_pRenderer);
 }

@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <SDL.h>
+#include "SDL_image.h"
+
+using namespace std;
 
 class Game
 {
@@ -25,9 +28,13 @@ class Game
     SDL_Rect m_sourceRectangle;
     SDL_Rect m_destinationRectangle;
 
+    SDL_Texture* m_pTexture_Back;
+    SDL_Rect m_sourceRectangle_Back;
+    SDL_Rect m_destinationRectangle_Back;
+
     bool m_bRunning = false;
-    
-    int countColor = 1;
+
+    int dirt = 1;
 };
 
 #endif
