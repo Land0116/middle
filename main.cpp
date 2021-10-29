@@ -1,4 +1,4 @@
-//[SDL_Image]
+//[Texture Manager]
 #include "Game.h"
 
 Game* g_game = 0;

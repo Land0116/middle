@@ -2,8 +2,6 @@
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 { 
-  SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
-  SDL_Surface* pTempSurface_Back = IMG_Load("Assets/BackGround.png");
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
     m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -16,34 +14,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
       {
         SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
-        if(pTempSurface != 0)
-        {
-          m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-          SDL_FreeSurface(pTempSurface);
+        m_textureManager.load("Assets/animate-alpha.png", "animate", m_pRenderer);
+        m_textureManager.load("Assets/BackGround.png", "BackGround", m_pRenderer);
 
-          m_sourceRectangle.w = 128;
-          m_sourceRectangle.h = 82;
-
-          m_destinationRectangle.w = m_sourceRectangle.w;
-          m_destinationRectangle.h = m_sourceRectangle.h;
-
-          cout << "W : " << m_sourceRectangle.w  << " H : " << m_sourceRectangle.h << endl;
-          if(pTempSurface_Back != 0)
-          {
-            m_pTexture_Back = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface_Back);
-            SDL_FreeSurface(pTempSurface_Back);
-
-            SDL_QueryTexture(m_pTexture_Back, NULL, NULL, &m_sourceRectangle_Back.w, &m_sourceRectangle_Back.h);
-
-            m_destinationRectangle_Back.w = m_sourceRectangle_Back.w;
-            m_destinationRectangle_Back.h = m_sourceRectangle_Back.h;
-
-            m_destinationRectangle_Back.x = m_sourceRectangle_Back.y = 0;
-            m_destinationRectangle_Back.y = m_sourceRectangle_Back.y = 0;
-          }
-          else { return false; }
-        }
-        else { return false; }
       }
       else { return false; }
     }
@@ -57,14 +30,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update()
 {
-  m_sourceRectangle.x = 128 * ( (SDL_GetTicks() / 100) % 6);
+  m_currentFrame = ( (SDL_GetTicks() / 100) % 6);
 }
 
 void Game::render()
 {
   SDL_RenderClear(m_pRenderer);
-  SDL_RenderCopy(m_pRenderer, m_pTexture_Back, &m_sourceRectangle_Back, &m_destinationRectangle_Back);
-  SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+  m_textureManager.draw("BackGround", 0, 0, 640, 480, m_pRenderer);
+  m_textureManager.drawFrame("animate", 0, 0, 128, 82, 0, m_currentFrame, m_pRenderer);
   SDL_RenderPresent(m_pRenderer);
 }
 

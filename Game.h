@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <SDL.h>
-#include "SDL_image.h"
+#include "TextureManager.h"
 
 using namespace std;
 
@@ -24,13 +24,9 @@ class Game
     SDL_Window* m_pWindow = 0;
     SDL_Renderer* m_pRenderer = 0;
 
-    SDL_Texture* m_pTexture;
-    SDL_Rect m_sourceRectangle;
-    SDL_Rect m_destinationRectangle;
+    TextureManager m_textureManager;
 
-    SDL_Texture* m_pTexture_Back;
-    SDL_Rect m_sourceRectangle_Back;
-    SDL_Rect m_destinationRectangle_Back;
+    int m_currentFrame;
 
     bool m_bRunning = false;
 };
