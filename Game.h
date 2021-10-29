@@ -6,7 +6,6 @@
 #include <vector>
 #include "TextureManager.h"
 #include "GameObject.h"
-#include "Player.h"
 
 using namespace std;
 

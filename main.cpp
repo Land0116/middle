@@ -1,4 +1,4 @@
-//[다형성]
+//[추상 Class]
 #include "Game.h"
 
 int main(int argc, char* args[])
