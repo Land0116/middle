@@ -21,6 +21,10 @@ class Game
     SDL_Window* m_pWindow = 0;
     SDL_Renderer* m_pRenderer = 0;
 
+    SDL_Texture* m_pTexture;
+    SDL_Rect m_sourceRectangle;
+    SDL_Rect m_destinationRectangle;
+
     bool m_bRunning = false;
     
     int countColor = 1;

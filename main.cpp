@@ -1,4 +1,4 @@
-//[Game클래스]
+//[SDL기본 그리기]
 #include "Game.h"
 
 Game* g_game = 0;
