@@ -4,6 +4,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "TextureManager.h"
+#include "GameObject.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -27,6 +29,9 @@ class Game
     int m_currentFrame;
 
     bool m_bRunning = false;
+
+    GameObject m_go;
+    Player m_player;
 };
 
 #endif

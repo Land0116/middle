@@ -1,4 +1,4 @@
-//[유일객체 TM]
+//[상속]
 #include "Game.h"
 
 Game* g_game = 0;
@@ -12,6 +12,7 @@ int main(int argc, char* args[])
     g_game->handleEvents();
     g_game->update();
     g_game->render();
+    SDL_Delay(10);
   }
   g_game->clean();
 
