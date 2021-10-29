@@ -1,4 +1,4 @@
-//[애니메이션 스프라이트]
+//[SDL_Image]
 #include "Game.h"
 
 Game* g_game = 0;

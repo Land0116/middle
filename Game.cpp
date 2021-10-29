@@ -2,7 +2,7 @@
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
 { 
-  SDL_Surface* pTempSurface = SDL_LoadBMP("Assets/animate.bmp");
+  SDL_Surface* pTempSurface = IMG_Load("Assets/animate-alpha.png");
   SDL_Surface* pTempSurface_Back = IMG_Load("Assets/BackGround.png");
   if(SDL_Init(SDL_INIT_EVERYTHING) == 0)
   {
@@ -14,7 +14,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
       if(m_pRenderer != 0)
       {
-        SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 255, 255);
+        SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
         if(pTempSurface != 0)
         {
