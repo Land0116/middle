@@ -24,8 +24,6 @@ class Game
     SDL_Window* m_pWindow = 0;
     SDL_Renderer* m_pRenderer = 0;
 
-    TextureManager m_textureManager;
-
     int m_currentFrame;
 
     bool m_bRunning = false;

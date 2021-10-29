@@ -1,4 +1,4 @@
-//[Texture Manager]
+//[유일객체 TM]
 #include "Game.h"
 
 Game* g_game = 0;

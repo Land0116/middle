@@ -14,8 +14,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
       {
         SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 
-        m_textureManager.load("Assets/animate-alpha.png", "animate", m_pRenderer);
-        m_textureManager.load("Assets/BackGround.png", "BackGround", m_pRenderer);
+        if(!TheTextureManager::Instance()->load("Assets/animate-alpha.png", "animate", m_pRenderer))
+        {
+          return false;
+        }
+        if(!TheTextureManager::Instance()->load("Assets/BackGround.png", "BackGround", m_pRenderer))
+        {
+          return false;
+        }
 
       }
       else { return false; }
@@ -36,8 +42,8 @@ void Game::update()
 void Game::render()
 {
   SDL_RenderClear(m_pRenderer);
-  m_textureManager.draw("BackGround", 0, 0, 640, 480, m_pRenderer);
-  m_textureManager.drawFrame("animate", 0, 0, 128, 82, 0, m_currentFrame, m_pRenderer);
+  TheTextureManager::Instance()->draw("BackGround", 0, 0, 640, 480, m_pRenderer);
+  TheTextureManager::Instance()->drawFrame("animate", 0, 0, 128, 82, 0, m_currentFrame, m_pRenderer);
   SDL_RenderPresent(m_pRenderer);
 }
 
