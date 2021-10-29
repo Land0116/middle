@@ -62,6 +62,7 @@ void update()
   if(countColor <= 10)
   {
     SDL_SetRenderDrawColor(g_pRenderer, rand() % 256, rand() % 256, rand() % 256, 255);
+    SDL_Delay(1000);
   }
   countColor++;
 }
