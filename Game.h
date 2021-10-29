@@ -33,8 +33,6 @@ class Game
     SDL_Rect m_destinationRectangle_Back;
 
     bool m_bRunning = false;
-
-    int dirt = 1;
 };
 
 #endif
